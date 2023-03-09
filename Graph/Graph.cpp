@@ -10,19 +10,19 @@ private:
     int m;                             // no of edges
     unordered_map<int, list<int>> adj; // Adjacency List
 public:
-    Graph(){
-        cout<<"Enter number of nodes : ";
-        cin>>n;
-        cout<<"\nEnter number of edges : ";
-        cin>>m;
+    Graph()
+    {
+        cout << "Enter number of nodes : ";
+        cin >> n;
+        cout << "\nEnter number of edges : ";
+        cin >> m;
 
         for (int i = 0; i < m; i++)
         {
-            int u , v;
-            cin>>u>>v;
-            addEdge(u,v,0); // creating undirected graph
+            int u, v;
+            cin >> u >> v;
+            addEdge(u, v, 0); // creating undirected graph
         }
-        
     }
     void addEdge(int u, int v, bool direction)
     {
@@ -33,7 +33,7 @@ public:
             adj[v].push_back(u);
         }
     }
-    void printGraph()
+    void printAdjList()
     {
         for (auto it : adj)
         {
@@ -50,6 +50,6 @@ public:
 int main()
 {
     Graph g;
-    g.printGraph();
+    g.printAdjList();
     return 0;
 }
