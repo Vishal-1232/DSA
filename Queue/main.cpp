@@ -2,6 +2,7 @@
 #include "queueArrayImplementation.cpp"
 #include "circularQueueArrayImplementation.cpp"
 #include "queueLinkedListImplementation.cpp"
+#include "dequeueLinkedListImplementation.cpp"
 
 using namespace std;
 
@@ -34,5 +35,15 @@ int main()
     ql.push(5);
     ql.push(6);
 
+    Dequeue dq;
+    dq.push_front(4);
+    dq.push_front(3);
+    dq.push_back(5);
+    dq.print();
+    cout << "Front Element: " << dq.start() << endl;
+    cout << "Back Element: " << dq.back() << endl;
+    dq.pop_back();
+    dq.pop_front();
+    dq.print();
     return 0;
 }

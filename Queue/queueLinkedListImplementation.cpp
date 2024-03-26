@@ -6,7 +6,7 @@ class Node
 public:
     int data;
     Node *next;
-    
+
     Node(int x)
     {
         data = x;
@@ -40,8 +40,9 @@ public:
         else
         {
             rear->next = new Node(x);
-            if(rear->next==NULL){ // if Heap memory is also full
-                cout<<"Queue Overflow!!"<<endl;
+            if (rear->next == NULL)
+            { // if Heap memory is also full
+                cout << "Queue Overflow!!" << endl;
                 return;
             }
             rear = rear->next;
@@ -82,9 +83,10 @@ public:
             cout << "Queue is Empty!!" << endl;
             return;
         }
-        Node* temp = front;
-        while(temp){
-            cout<<temp->data<<" ";
+        Node *temp = front;
+        while (temp)
+        {
+            cout << temp->data << " ";
             temp = temp->next;
         }
         cout << endl;
