@@ -14,28 +14,34 @@ public:
     }
 };
 
-void inorder(Node* root){
-    if(root==NULL){
+void inorder(Node *root)
+{
+    if (root == NULL)
+    {
         return;
     }
 
     inorder(root->left);
-    cout<<root->data<<" ";
+    cout << root->data << " ";
     inorder(root->right);
 }
 
-bool search(Node* root, int target){
-    if(root==NULL){
+bool search(Node *root, int target)
+{
+    if (root == NULL)
+    {
         return false;
     }
-    if(target == root->data){
+    if (target == root->data)
+    {
         return true;
     }
 
-    if(target < root->data){
-        return search(root->left,target);
+    if (target < root->data)
+    {
+        return search(root->left, target);
     }
-    return search(root->right,target);
+    return search(root->right, target);
 }
 
 Node *insertNode(Node *root, int val)
@@ -46,62 +52,81 @@ Node *insertNode(Node *root, int val)
         return newNode;
     }
 
-    if(root->data > val){
-        root->left = insertNode(root->left,val);
-    }else{
-        root->right = insertNode(root->right,val);
+    if (root->data > val)
+    {
+        root->left = insertNode(root->left, val);
+    }
+    else
+    {
+        root->right = insertNode(root->right, val);
     }
 
     return root;
 }
 
-Node* deleteNode(Node*root, int target){
-    if(!root){
+Node *deleteNode(Node *root, int target)
+{
+    if (!root)
+    {
         return NULL;
     }
 
-    if(root->data > target){
-        root->left = deleteNode(root->left,target);
+    if (root->data > target)
+    {
+        root->left = deleteNode(root->left, target);
         return root;
-    }else if(root->data < target){
-        root->right = deleteNode(root->right,target);
+    }
+    else if (root->data < target)
+    {
+        root->right = deleteNode(root->right, target);
         return root;
-    }else{ // target node == root node
+    }
+    else
+    { // target node == root node
         // case 1 : Node to be deleted is a leaf node
-        if(root->left == NULL && root->right == NULL){
+        if (root->left == NULL && root->right == NULL)
+        {
             delete root;
             return NULL;
         }
 
         // case 2 : Node to be deleted has one child
-        else if(root->right == NULL){ // only left child exist
-            Node* temp = root->left;
+        else if (root->right == NULL)
+        { // only left child exist
+            Node *temp = root->left;
             delete root;
             return temp;
-        }else if(root->left == NULL){ // only right child exist
-            Node* temp = root->right;
+        }
+        else if (root->left == NULL)
+        { // only right child exist
+            Node *temp = root->right;
             delete root;
             return temp;
         }
 
         // case 3: Node to be deleted have two child
-        else{
+        else
+        {
             // find the greatest element from left
-            Node* parent = root;
-            Node* child = root->left;
+            Node *parent = root;
+            Node *child = root->left;
 
-            while(child->right){
+            while (child->right)
+            {
                 parent = child;
                 child = child->right;
             }
 
-            if(root != parent){
+            if (root != parent)
+            {
                 parent->right = child->left;
                 child->left = root->left;
                 child->right = root->right;
                 delete root;
                 return child;
-            }else{
+            }
+            else
+            {
                 child->right = parent->right;
                 delete root;
                 return child;
@@ -119,7 +144,7 @@ int main()
         root = insertNode(root, arr[i]);
     }
 
-    //inorder(root);
-    cout<<search(root,8);
+    // inorder(root);
+    cout << search(root, 8);
     return 0;
 }
